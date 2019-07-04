@@ -1,0 +1,68 @@
+#painel .card {
+  padding: 15px;
+  width: 600px;
+  max-width: 100%;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 2px 4px 3px #666;
+  transition: .3s linear;
+}
+
+#painel .card:hover {
+  box-shadow: 4px 5px 5px #666;
+  margin: 0 2px 2px 0;
+}
+
+#painel .card .body {
+  margin: 15px 0;
+}
+
+#painel .perguntas {
+  position: relative;
+  animation-name: comeon;
+  animation-duration: .5s;
+}
+
+#painel .perguntas .score {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+#painel .perguntas .item {
+  border: 1px solid #666;
+  border-radius: 3px;
+  margin: 5px 0;
+  width: fit-content;
+}
+
+#painel .perguntas .item label {
+  padding: 5px;
+}
+
+.center {
+  text-align: center;
+}
+
+button {
+  outline: 0;
+  border-radius: 3px;
+  background-color: #fff;
+  color: #000;
+  padding: 3px 7px;
+  margin: 5px auto;
+  display: block;
+}
+
+@keyframes comeon {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: .8;
+  }
+  100% {
+    transform: scale(1);
+  }
+}

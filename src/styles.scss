@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {
+    height: 100vh;
+    overflow: hidden;
+    background-color: #cecece;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-image: url(assets/fundo.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.centralizado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    &.inverse {
+        flex-direction: column;
+    }
+}

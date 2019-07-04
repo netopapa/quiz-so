@@ -1,20 +1,51 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div id="painel">
 
+  <div *ngIf="onHome" class="home card">
+    <div class="header">
+      <h3 class="center">Quiz - SO</h3>
+      <h5 class="center">Pressione Start para iniciar</h5>
+    </div>
+
+    <div class="body">
+      <h1 class="center">{{bestScore > 0 ? 'Record: ' + bestScore : 'Seja o primeiro a fazer um record!'}}</h1>
+    </div>
+
+    <div class="footer">
+      <button (click)="start()">START</button>
+    </div>
+  </div>
+
+  <div *ngIf="!onHome" class="perguntas card">
+
+    <h5 class="score">score: {{score}}</h5>
+
+    <div class="header">
+      <h3 class="center">Quiz - SO</h3>
+    </div>
+
+    <div class="body">
+      <h3 class="center">{{quest.title}}</h3>
+      <div class="centralizado inverse" *ngIf="!quest.isBig">
+        <label for="options">Selecione uma resposta</label>
+        <select id="options" name="kk" [(ngModel)]="quest.userAnswer">
+          <option [value]="answer.id" *ngFor="let answer of quest.answers">{{answer.text}}</option>
+        </select>
+      </div>
+      <div class="quest-list" *ngIf="quest.isBig">
+        <ng-container *ngFor="let answer of quest.answers; let i = index">
+          <div class="item" (click)="selectThis(answer.id)">
+            <input type="radio" name="resp" [id]="'r' + i" />
+            <label [for]="'r' + i">{{answer.text}}</label>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="footer">
+      <button *ngIf="currentQuest !== (quests.length - 1)" [disabled]="!quest.userAnswer"
+        (click)="next()">Prosseguir</button>
+      <button *ngIf="currentQuest === (quests.length - 1)" [disabled]="!quest.userAnswer"
+        (click)="end()">Finalizar</button>
+    </div>
+  </div>
+</div>
